@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kunci & Pembahasan Olimpiade Matematika Al Ishlah</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Prevent body scrolling */
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+
+        /* Animated Liquid Background */
+        .liquid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.7;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        /* macOS Glass Container */
+        .mac-glass {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: saturate(180%) blur(25px);
+            -webkit-backdrop-filter: saturate(180%) blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 25px 50px -12px rgba(31, 38, 135, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .glass-btn:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Custom Scrollbar for inner content */
+        .custom-scroll {
+            overflow-y: auto;
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Layer Transitions */
+        .layer-transition {
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .math-scroll { overflow-x: auto; overflow-y: hidden; }
+    </style>
+
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <!-- Liquid Background Elements -->
+    <div class="liquid-bg">
+        <div class="blob bg-blue-400 w-[500px] h-[500px] top-[-10%] left-[-10%]"></div>
+        <div class="blob bg-purple-400 w-[600px] h-[600px] bottom-[-20%] right-[-10%] animation-delay-2000"></div>
+        <div class="blob bg-pink-300 w-[400px] h-[400px] top-[30%] left-[40%] animation-delay-4000"></div>
+        <div class="blob bg-indigo-300 w-[300px] h-[300px] bottom-[10%] left-[10%] animation-delay-1000"></div>
+    </div>
+
+    <!-- Main App Container -->
+    <div class="w-full h-screen p-3 md:p-8 flex items-center justify-center">
+        
+        <!-- The macOS Window -->
+        <div class="mac-glass w-full max-w-6xl h-full rounded-2xl md:rounded-3xl flex flex-col relative overflow-hidden">
+            
+            <!-- Window Controls (Red, Yellow, Green dots) -->
+            <div class="absolute top-4 left-5 flex gap-2 z-20 hidden md:flex">
+                <div class="w-3.5 h-3.5 rounded-full bg-red-400 border border-red-500 shadow-inner"></div>
+                <div class="w-3.5 h-3.5 rounded-full bg-yellow-400 border border-yellow-500 shadow-inner"></div>
+                <div class="w-3.5 h-3.5 rounded-full bg-green-400 border border-green-500 shadow-inner"></div>
+            </div>
+
+            <!-- Header -->
+            <header class="flex flex-col md:flex-row items-center justify-between px-6 pt-12 md:pt-6 pb-6 border-b border-white/40 bg-white/10 z-10">
+                <div class="flex-shrink-0 mb-4 md:mb-0">
+                    <img src="https://iili.io/Ce8iqts.png" alt="Logo Sekolah" class="h-16 md:h-20 w-auto object-contain drop-shadow-md">
+                </div>
+                
+                <div class="text-center flex-grow px-4">
+                    <h1 class="text-xl md:text-2xl font-extrabold uppercase tracking-wider text-slate-800 drop-shadow-sm">
+                        Kunci Jawaban dan Pembahasan
+                    </h1>
+                    <h2 class="text-sm md:text-base font-semibold mt-1 text-slate-700">
+                        Olimpiade Matematika Al Ishlah – SMP/MTs se-Provinsi Gorontalo
+                    </h2>
+                    <div class="mt-3 inline-flex items-center gap-2 bg-red-500/80 text-white text-[10px] md:text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm backdrop-blur-md border border-red-400">
+                        Dokumen Internal: Panitia & Juri
+                    </div>
+                </div>
+
+                <div class="flex-shrink-0 mt-4 md:mt-0">
+                    <img src="https://iili.io/n17L7Q2.png" alt="Logo Milad" class="h-16 md:h-20 w-auto object-contain drop-shadow-md">
+                </div>
+            </header>
+
+            <!-- Content Area (Relative for Layering) -->
+            <main class="flex-1 relative overflow-hidden">
+                
+                <!-- LAYER 1: GRID VIEW -->
+                <div id="grid-layer" class="absolute inset-0 p-6 md:p-10 flex flex-col h-full custom-scroll layer-transition opacity-100 scale-100 z-10">
+                    <div class="text-center mb-8">
+                        <h3 class="text-lg md:text-xl font-bold text-slate-800 mb-2">Pilih Nomor Soal</h3>
+                        <p class="text-sm text-slate-600">Klik pada nomor soal di bawah ini untuk melihat kunci jawaban dan detail langkah pengerjaan.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-10 gap-3 md:gap-5 max-w-5xl mx-auto w-full">
+                        <!-- Grid buttons will be generated by JS to keep HTML clean -->
+                    </div>
+
+                    <div class="mt-auto pt-8 text-center">
+                        <div class="inline-block bg-white/40 backdrop-blur-md border border-white/50 rounded-xl p-4 shadow-sm text-sm text-slate-700">
+                            <strong>Aturan Penilaian:</strong> Benar ($+4$) | Kosong ($0$) | Salah ($-1$) &mdash; <em>Skor maksimum 80</em>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LAYER 2: DETAIL VIEW (Hidden initially) -->
+                <div id="detail-layer" class="absolute inset-0 p-4 md:p-8 flex flex-col h-full bg-white/20 backdrop-blur-sm layer-transition opacity-0 scale-95 pointer-events-none z-0">
+                    
+                    <!-- Detail Header (Back Button & Info) -->
+                    <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/40">
+                        <button onclick="showGrid()" class="flex items-center gap-2 bg-white/50 hover:bg-white/80 text-slate-800 font-semibold py-2 px-4 rounded-lg shadow-sm border border-white/60 transition-all backdrop-blur-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" /></svg>
+                            Kembali ke Grid
+                        </button>
+                        
+                        <div class="flex items-center gap-4">
+                            <h3 id="detail-title" class="text-xl md:text-2xl font-extrabold text-slate-800 drop-shadow-sm">Soal ?</h3>
+                            <div class="bg-emerald-500 text-white font-bold text-lg py-1 px-4 rounded-lg shadow-md border border-emerald-400">
+                                Jawaban: <span id="detail-answer" class="text-xl">?</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detail Content (Scrollable) -->
+                    <div class="flex-1 custom-scroll bg-white/50 rounded-2xl p-5 md:p-8 border border-white/60 shadow-inner text-slate-800 text-sm md:text-base leading-relaxed">
+                        
+                        <!-- All Question Details are pre-rendered here but hidden. JS toggles them. -->
+                        
+                        <!-- Soal 1 -->
+                        <div id="q-1" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Memahami Skema Tarif</strong><br>
+                            Biaya tagihan air dihitung berdasarkan rentang pemakaian per meter kubik ($m^3$) ditambah dengan biaya tetap bulanan sebesar Rp5.000,00.</p>
+                            <p><strong>Langkah 2: Memecah Total Volume Air</strong><br>
+                            Total pemakaian air adalah $27 \text{ m}^3$. Volume ini harus dipecah berdasarkan rentang tarif:
+                            $$27 \text{ m}^3 = 10 \text{ m}^3 \text{ (pertama)} + 10 \text{ m}^3 \text{ (kedua)} + 7 \text{ m}^3 \text{ (sisanya)}$$</p>
+                            <p><strong>Langkah 3: Menghitung Biaya Pemakaian</strong><br>
+                            - Biaya $10 \text{ m}^3$ pertama: $10 \times \text{Rp}3.000 = \text{Rp}30.000$<br>
+                            - Biaya $10 \text{ m}^3$ kedua: $10 \times \text{Rp}4.500 = \text{Rp}45.000$<br>
+                            - Biaya $7 \text{ m}^3$ sisa: $7 \times \text{Rp}7.000 = \text{Rp}49.000$<br>
+                            Total biaya pemakaian = $30.000 + 45.000 + 49.000 = \text{Rp}124.000$.</p>
+                            <p><strong>Langkah 4: Menghitung Total Tagihan</strong><br>
+                            Total Tagihan = Total biaya pemakaian + Biaya tetap = $124.000 + 5.000 = \text{Rp}129.000,00$.</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, total tagihan yang harus dibayar adalah Rp129.000,00.</div>
+                        </div>
+
+                        <!-- Soal 2 -->
+                        <div id="q-2" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Memisahkan Biaya Tetap</strong><br>
+                            Diketahui total tagihan adalah Rp115.000,00. Kurangi dengan biaya tetap untuk mengetahui biaya pemakaian air murni.<br>
+                            Biaya pemakaian = $115.000 - 5.000 = \text{Rp}110.000$.</p>
+                            <p><strong>Langkah 2: Mengalokasikan Biaya ke Rentang Tarif</strong><br>
+                            - Memenuhi $10 \text{ m}^3$ pertama (maks Rp30.000): Sisa dana $110.000 - 30.000 = 80.000$.<br>
+                            - Memenuhi $10 \text{ m}^3$ kedua (maks Rp45.000): Sisa dana $80.000 - 45.000 = 35.000$.<br>
+                            Dana tersisa Rp35.000 ini masuk ke tarif ketiga (harga Rp7.000/$\text{m}^3$).</p>
+                            <p><strong>Langkah 3: Menghitung Sisa Volume & Total</strong><br>
+                            Volume sisa = $\frac{35.000}{7.000} = 5 \text{ m}^3$.<br>
+                            Total pemakaian = $10 \text{ m}^3 + 10 \text{ m}^3 + 5 \text{ m}^3 = 25 \text{ m}^3$.</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, pemakaian air keluarga tersebut adalah 25 $\text{m}^3$.</div>
+                        </div>
+
+                        <!-- Soal 3 -->
+                        <div id="q-3" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Identifikasi Bangun Datar</strong><br>
+                            Lapangan terdiri dari sebuah persegi panjang di tengah dan dua buah setengah lingkaran di kedua ujungnya. Dua setengah lingkaran ini digabungkan membentuk satu lingkaran utuh.</p>
+                            <p><strong>Langkah 2: Menghitung Luas Persegi Panjang</strong><br>
+                            Panjang ($p$) = $50 \text{ m}$ dan Lebar ($l$) = $28 \text{ m}$.<br>
+                            $L_{\text{persegi panjang}} = 50 \times 28 = 1.400 \text{ m}^2$.</p>
+                            <p><strong>Langkah 3: Menghitung Luas Lingkaran Utuh</strong><br>
+                            Diameter lingkaran sama dengan lebar persegi panjang ($d = 28 \text{ m}$), sehingga jari-jari ($r$) = $14 \text{ m}$.<br>
+                            $L_{\text{lingkaran}} = \frac{22}{7} \times 14^2 = \frac{22}{7} \times 196 = 616 \text{ m}^2$.</p>
+                            <p><strong>Langkah 4: Menjumlahkan Total Luas</strong><br>
+                            $L_{\text{total}} = 1.400 + 616 = 2.016 \text{ m}^2$.</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, luas lapangan tersebut adalah $2.016 \text{ m}^2$.</div>
+                        </div>
+
+                        <!-- Soal 4 -->
+                        <div id="q-4" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Menghitung Keliling Satu Putaran</strong><br>
+                            Keliling lintasan terdiri dari dua garis lurus sepanjang $50 \text{ m}$ dan keliling dua setengah lingkaran (satu lingkaran utuh diameter $28 \text{ m}$).<br>
+                            $K_{\text{lintasan}} = (2 \times 50) + (\frac{22}{7} \times 28) = 100 + 88 = 188 \text{ m}$.</p>
+                            <p><strong>Langkah 2: Mengkonversi & Menentukan Banyak Putaran</strong><br>
+                            Target jarak $1,5 \text{ km} = 1.500 \text{ meter}$.<br>
+                            $\text{Jumlah putaran} = \frac{1.500}{188} \approx 7,98 \text{ putaran}$.</p>
+                            <p><strong>Langkah 3: Analisis Kebutuhan</strong><br>
+                            Jika pelari berlari $7$ putaran, jarak baru $1.316 \text{ m}$. Agar mencapai minimal $1.500 \text{ m}$, pelari harus menyelesaikan putaran ke-8 (menjadi $1.504 \text{ m}$).</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, dibutuhkan 8 putaran penuh.</div>
+                        </div>
+
+                        <!-- Soal 5 -->
+                        <div id="q-5" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Identifikasi Pola Matematika</strong><br>
+                            Masalah ini membentuk Barisan Aritmetika.<br>
+                            - Suku pertama ($a$) = $\text{Rp}150.000$<br>
+                            - Beda ($b$) = $\text{Rp}20.000$<br>
+                            - Lama menabung ($n$) = $12 \text{ pekan}$</p>
+                            <p><strong>Langkah 2: Menggunakan Rumus Deret Aritmetika</strong><br>
+                            $$S_n = \frac{n}{2} \left[ 2a + (n-1)b \right]$$
+                            $$S_{12} = \frac{12}{2} \left[ 2(150.000) + (11)(20.000) \right]$$
+                            $$S_{12} = 6 \left[ 300.000 + 220.000 \right]$$
+                            $$S_{12} = 6 \times 520.000 = 3.120.000$$</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, jumlah tabungan Andi setelah 12 pekan adalah Rp3.120.000,00.</div>
+                        </div>
+
+                        <!-- Soal 6 -->
+                        <div id="q-6" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Menyusun Pertidaksamaan</strong><br>
+                            Kita mencari kapan setoran mingguan ($U_n$) melewati Rp400.000.<br>
+                            $$a + (n-1)b > 400.000$$</p>
+                            <p><strong>Langkah 2: Substitusi & Selesaikan</strong><br>
+                            $$150.000 + (n-1)(20.000) > 400.000$$
+                            $$(n-1)(20.000) > 250.000$$
+                            $$n - 1 > 12,5$$
+                            $$n > 13,5$$</p>
+                            <p><strong>Langkah 3: Kesimpulan</strong><br>
+                            Karena $n$ adalah pekan (bilangan bulat), maka nilai pertama yang memenuhi adalah $14$.<br>
+                            (Cek: Pekan ke-13 = 390.000; Pekan ke-14 = 410.000).</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, tabungan melampaui Rp400.000,00 pada pekan ke-14.</div>
+                        </div>
+
+                        <!-- Soal 7 -->
+                        <div id="q-7" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Menemukan Persentase Ikan</strong><br>
+                            - Persentase Tuna = $35\%$<br>
+                            - Persentase Tongkol = $20\%$</p>
+                            <p><strong>Langkah 2: Menghitung Selisih Persentase</strong><br>
+                            Selisih persentase = $35\% - 20\% = 15\%$</p>
+                            <p><strong>Langkah 3: Menghitung Selisih Berat Nyata</strong><br>
+                            Total hasil tangkapan = $2.400 \text{ kg}$.<br>
+                            Selisih berat = $15\% \times 2.400 = \frac{15}{100} \times 2.400 = 360 \text{ kg}$.</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, selisih hasil tangkapan ikan tuna dan ikan tongkol adalah 360 kg.</div>
+                        </div>
+
+                        <!-- Soal 8 -->
+                        <div id="q-8" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Menghitung Berat Masing-Masing Jenis Ikan</strong><br>
+                            Total = $2.400 \text{ kg}$.<br>
+                            - Tuna: $35\% \times 2.400 = 840 \text{ kg}$<br>
+                            - Cakalang: $600 \text{ kg}$ (diketahui/dihitung 25%)<br>
+                            - Tongkol: $480 \text{ kg}$ (20%)<br>
+                            - Lainnya: $480 \text{ kg}$ (20%)</p>
+                            <p><strong>Langkah 2: Mengalikan dengan Harga Jual</strong><br>
+                            - Tuna = $840 \times 40.000 = \text{Rp}33.600.000$<br>
+                            - Cakalang = $600 \times 30.000 = \text{Rp}18.000.000$<br>
+                            - Tongkol = $480 \times 20.000 = \text{Rp}9.600.000$<br>
+                            - Lainnya = $480 \times 10.000 = \text{Rp}4.800.000$</p>
+                            <p><strong>Langkah 3: Menjumlahkan Total Pendapatan</strong><br>
+                            Total = $33.600.000 + 18.000.000 + 9.600.000 + 4.800.000 = \text{Rp}66.000.000$.</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, hasil penjualan seluruh ikan tangkapan adalah Rp66.000.000,00.</div>
+                        </div>
+
+                        <!-- Soal 9 -->
+                        <div id="q-9" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Menghitung Ruang Sampel</strong><br>
+                            Total kupon = 50, diambil 2 sekaligus.<br>
+                            $n(S) = C(50,2) = \frac{50 \times 49}{2} = 1.225$ cara.</p>
+                            <p><strong>Langkah 2: Peluang Sama Sekali Tidak Mendapat Hadiah</strong><br>
+                            Ada 5 kupon berhadiah, sehingga 45 kosong.<br>
+                            Cara mengambil 2 kosong: $n(\text{kosong}) = C(45,2) = \frac{45 \times 44}{2} = 990$ cara.</p>
+                            <p><strong>Langkah 3: Peluang Paling Sedikit Satu Hadiah (Komplemen)</strong><br>
+                            $P = 1 - P(\text{kosong}) = 1 - \frac{990}{1.225} = \frac{1.225 - 990}{1.225} = \frac{235}{1.225}$.<br>
+                            Sederhanakan dibagi 5: $\frac{47}{245}$.</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, peluang Budi mendapat paling sedikit satu hadiah adalah $\frac{47}{245}$.</div>
+                        </div>
+
+                        <!-- Soal 10 -->
+                        <div id="q-10" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Mengetahui Ruang Sampel</strong><br>
+                            Ruang sampel mengambil 2 dari 50: $C(50,2) = 1.225$.</p>
+                            <p><strong>Langkah 2: Menghitung Kejadian Hadiah Utama</strong><br>
+                            Syarat: 1 kupon utama (dari 1) DAN 1 kupon lainnya (dari 49).<br>
+                            Banyak cara = $C(1,1) \times C(49,1) = 1 \times 49 = 49$ cara.</p>
+                            <p><strong>Langkah 3: Menghitung Peluang</strong><br>
+                            $P = \frac{49}{1.225}$. Sederhanakan dibagi 49: $P = \frac{1}{25}$.</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, peluang Budi memperoleh hadiah utama adalah $\frac{1}{25}$.</div>
+                        </div>
+
+                        <!-- Soal 11 -->
+                        <div id="q-11" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Identifikasi Pola Barisan Fibonacci</strong><br>
+                            Deret: $1, 3, 4, 7, 11, \dots$<br>
+                            Suku berikutnya adalah jumlah dua suku sebelumnya.<br>
+                            $U_3 = 1+3=4$, $U_4 = 3+4=7$, $U_5 = 4+7=11$.</p>
+                            <p><strong>Langkah 2: Meneruskan hingga Suku ke-10</strong><br>
+                            $U_6 = 7+11 = 18$<br>
+                            $U_7 = 11+18 = 29$<br>
+                            $U_8 = 18+29 = 47$<br>
+                            $U_9 = 29+47 = 76$<br>
+                            $U_{10} = 47+76 = 123$</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, nilai suku ke-10 adalah 123.</div>
+                        </div>
+
+                        <!-- Soal 12 -->
+                        <div id="q-12" class="q-content hidden space-y-4">
+                            <p class="font-medium text-slate-800 border-l-4 border-emerald-500 pl-3 mb-4">Diketahui persamaan kuadrat: $x^2 - 6x + 4 = 0$ dengan akar-akar $p$ dan $q$.</p>
+                            <p><strong>Langkah 1: Identifikasi Koefisien</strong><br>
+                            Dari bentuk $ax^2 + bx + c = 0$, didapatkan $a = 1$, $b = -6$, $c = 4$.</p>
+                            <p><strong>Langkah 2: Menentukan Jumlah Akar ($p+q$)</strong><br>
+                            Menggunakan Teorema Vieta: $p + q = -\frac{b}{a} = -\frac{-6}{1} = 6$.</p>
+                            <p><strong>Langkah 3: Menentukan Hasil Kali Akar ($pq$)</strong><br>
+                            Menggunakan Teorema Vieta: $p \times q = \frac{c}{a} = \frac{4}{1} = 4$.</p>
+                            <p><strong>Langkah 4: Manipulasi Aljabar untuk $p^3 + q^3$</strong><br>
+                            Gunakan identitas aljabar: $p^3 + q^3 = (p + q)^3 - 3pq(p + q)$.</p>
+                            <p><strong>Langkah 5: Substitusi dan Kalkulasi</strong><br>
+                            $$p^3 + q^3 = (6)^3 - 3(4)(6)$$
+                            $$p^3 + q^3 = 216 - 12(6)$$
+                            $$p^3 + q^3 = 216 - 72 = 144$$</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, nilai $p^3 + q^3$ adalah $144$.</div>
+                        </div>
+
+                        <!-- Soal 13 -->
+                        <div id="q-13" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Identifikasi Jenis Segitiga</strong><br>
+                            Sisi 9, 12, 15 memenuhi Teorema Pythagoras ($9^2 + 12^2 = 15^2$). Ini adalah segitiga siku-siku.<br>
+                            Luas segitiga = $\frac{1}{2} \times 9 \times 12 = 54 \text{ cm}^2$.</p>
+                            <p><strong>Langkah 2: Jari-jari Lingkaran Dalam</strong><br>
+                            Rumus khusus segitiga siku-siku: $r = \frac{a+b-c}{2} = \frac{9+12-15}{2} = \frac{6}{2} = 3 \text{ cm}$.<br>
+                            (Atau $r = \frac{Luas}{s} = \frac{54}{18} = 3$).</p>
+                            <p><strong>Langkah 3: Luas Daerah yang Diarsir</strong><br>
+                            Luas lingkaran = $\pi \times 3^2 = 9\pi \text{ cm}^2$.<br>
+                            Luas arsir = Luas Segitiga - Luas Lingkaran = $54 - 9\pi \text{ cm}^2$.</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, luas daerah di luar lingkaran tetapi di dalam segitiga adalah $54 - 9\pi \text{ cm}^2$.</div>
+                        </div>
+
+                        <!-- Soal 14 -->
+                        <div id="q-14" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Analisis Syarat Bilangan</strong><br>
+                            Tersedia $7$ angka ($0$ s.d $6$). Akan dibentuk 4 digit <strong>genap, tanpa pengulangan</strong>. Angka ribuan tidak boleh $0$.</p>
+                            <p><strong>Langkah 2: Kasus 1 (Satuan adalah 0)</strong><br>
+                            Satuan (1 pilihan: $0$). Ribuan, Ratusan, Puluhan dipilih dari 6 angka sisa secara bebas.<br>
+                            Banyak susunan = $1 \times 6 \times 5 \times 4 = 120$.</p>
+                            <p><strong>Langkah 3: Kasus 2 (Satuan adalah 2, 4, 6)</strong><br>
+                            Satuan (3 pilihan). Ribuan (5 pilihan, 0 tidak boleh). Ratusan (5 pilihan, 0 boleh ikut). Puluhan (4 pilihan).<br>
+                            Banyak susunan = $3 \times 5 \times 5 \times 4 = 300$.</p>
+                            <p><strong>Langkah 4: Total Kemungkinan</strong><br>
+                            Total = $120 + 300 = 420$.</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, banyak bilangan genap yang bisa dibentuk adalah 420 bilangan.</div>
+                        </div>
+
+                        <!-- Soal 15 -->
+                        <div id="q-15" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Ruang Sampel Total</strong><br>
+                            Pelemparan 3 mata dadu: $n(S) = 6^3 = 216$.</p>
+                            <p><strong>Langkah 2: Cari Kombinasi Angka Berjumlah 10</strong><br>
+                            Kombinasi: $\{1,3,6\}, \{1,4,5\}, \{2,3,5\}$ (angka beda semua).<br>
+                            $\{2,2,6\}, \{2,4,4\}, \{3,3,4\}$ (ada angka kembar).</p>
+                            <p><strong>Langkah 3: Hitung Permutasi</strong><br>
+                            - Kombinasi angka beda (3 kelompok): tiap kelompok punya $3! = 6$ susunan $\implies 3 \times 6 = 18$.<br>
+                            - Kombinasi ada kembar (3 kelompok): tiap kelompok punya $\frac{3!}{2!} = 3$ susunan $\implies 3 \times 3 = 9$.<br>
+                            Total $n(A) = 18 + 9 = 27$.</p>
+                            <p><strong>Langkah 4: Hitung Peluang</strong><br>
+                            $P(A) = \frac{27}{216} = \frac{1}{8}$.</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, peluang munculnya mata dadu berjumlah 10 adalah $\frac{1}{8}$.</div>
+                        </div>
+
+                        <!-- Soal 16 -->
+                        <div id="q-16" class="q-content hidden space-y-4">
+                            <p class="font-medium text-slate-800 border-l-4 border-emerald-500 pl-3 mb-4">Diketahui $\frac{1}{a} + \frac{1}{b} = \frac{1}{6}$ dengan $a$ dan $b$ bilangan bulat positif.</p>
+                            <p><strong>Langkah 1: Samakan Penyebut & Kali Silang</strong><br>
+                            $$\frac{a + b}{ab} = \frac{1}{6} \implies 6(a + b) = ab \implies 6a + 6b = ab$$</p>
+                            <p><strong>Langkah 2: Pemfaktoran <em>(Simon's Favorite Factoring Trick)</em></strong><br>
+                            Pindah ruas: $ab - 6a - 6b = 0$.<br>
+                            Faktorkan $a$: $a(b - 6) - 6b = 0$.<br>
+                            Tambahkan angka $36$ (dari $-6 \times -6$) di kedua ruas:<br>
+                            $$a(b - 6) - 6b + 36 = 36$$
+                            $$a(b - 6) - 6(b - 6) = 36$$
+                            $$(a - 6)(b - 6) = 36$$</p>
+                            <p><strong>Langkah 3: Menghitung Jumlah Pasangan</strong><br>
+                            Karena $a, b > 6$, maka $(a-6)$ dan $(b-6)$ adalah faktor bulat positif dari 36.<br>
+                            Faktor 36: $\{1, 2, 3, 4, 6, 9, 12, 18, 36\}$. Terdapat 9 faktor, yang otomatis menghasilkan 9 pasangan unik $(a,b)$.</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, terdapat 9 pasangan terurut $(a,b)$ yang memenuhi persamaan.</div>
+                        </div>
+
+                        <!-- Soal 17 -->
+                        <div id="q-17" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Selesaikan Pertidaksamaan Nilai Mutlak</strong><br>
+                            Berdasarkan sifat, $|2x - 5| < 9 \implies -9 < 2x - 5 < 9$.</p>
+                            <p><strong>Langkah 2: Sederhanakan Rentang</strong><br>
+                            Tambahkan $5$ di semua ruas: $-4 < 2x < 14$.<br>
+                            Bagi dengan $2$: $-2 < x < 7$.</p>
+                            <p><strong>Langkah 3: Identifikasi dan Jumlahkan Bilangan Bulat</strong><br>
+                            Nilai $x$ bulat yang memenuhi: $\{-1, 0, 1, 2, 3, 4, 5, 6\}$.<br>
+                            Jumlah = $(-1) + 0 + 1 + 2 + 3 + 4 + 5 + 6 = 20$.</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, jumlah semua nilai bulat $x$ yang memenuhi adalah 20.</div>
+                        </div>
+
+                        <!-- Soal 18 -->
+                        <div id="q-18" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Menghitung Sisi Miring (Kaki) Trapesium</strong><br>
+                            Trapesium sama kaki: Sisi atas $8$, alas $20$, tinggi $8$.<br>
+                            Panjang alas segitiga siku-siku pembentuk kaki = $\frac{20 - 8}{2} = 6 \text{ cm}$.<br>
+                            Sisi miring = $\sqrt{8^2 + 6^2} = \sqrt{64 + 36} = 10 \text{ cm}$.</p>
+                            <p><strong>Langkah 2: Menghitung Keliling</strong><br>
+                            $K = \text{Atas} + \text{Alas} + (2 \times \text{Kaki})$<br>
+                            $K = 8 + 20 + 10 + 10 = 48 \text{ cm}$.</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, keliling trapesium tersebut adalah 48 cm.</div>
+                        </div>
+
+                        <!-- Soal 19 -->
+                        <div id="q-19" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Volume Sirup Murni Awal</strong><br>
+                            Volume sirup murni = $40\% \times 10 = 4 \text{ liter}$ (volume ini tetap/tidak berubah).</p>
+                            <p><strong>Langkah 2: Membentuk Persamaan Penambahan Air</strong><br>
+                            Misal air ditambah $x$ liter, target $25\%$.<br>
+                            $\frac{4}{10 + x} = 25\%$<br>
+                            $\frac{4}{10 + x} = \frac{1}{4}$</p>
+                            <p><strong>Langkah 3: Selesaikan Persamaan</strong><br>
+                            Kali silang: $10 + x = 16 \implies x = 6 \text{ liter}$.</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, banyaknya air yang harus ditambahkan adalah 6 liter.</div>
+                        </div>
+
+                        <!-- Soal 20 -->
+                        <div id="q-20" class="q-content hidden space-y-4">
+                            <p><strong>Langkah 1: Syarat 1 (B & C Berdampingan)</strong><br>
+                            Gabungkan B dan C jadi blok [BC]. Dalam blok bisa BC atau CB ($2! = 2$ cara).<br>
+                            Unit yang disusun: [BC], A, D, E (total 4 unit).<br>
+                            Susunan = $4! \times 2 = 24 \times 2 = 48$ susunan.</p>
+                            <p><strong>Langkah 2: Pelanggaran Syarat 2 (A Tidak Boleh di Ujung)</strong><br>
+                            Hitung yang <strong>ilegal</strong> (A di ujung):<br>
+                            - A di ujung depan ([A] [_] [_] [_]): $3! \times 2 \text{ (dari blok BC)} = 12$ susunan.<br>
+                            - A di ujung belakang ([_] [_] [_] [A]): $12$ susunan.<br>
+                            Total ilegal = 24 susunan.</p>
+                            <p><strong>Langkah 3: Pengurangan Total</strong><br>
+                            Susunan sah = $48 - 24 = 24$ susunan.</p>
+                            <div class="mt-4 font-semibold text-blue-900 bg-blue-100/60 p-4 rounded-xl border border-blue-200">Jadi, banyak susunan yang memenuhi kedua syarat tersebut adalah 24 susunan.</div>
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Key answers array to feed the grid and detail views
+        const answers = [
+            "B", "A", "C", "E", "E", 
+            "A", "B", "D", "C", "A", 
+            "C", "B", "D", "A", "E", 
+            "D", "C", "E", "D", "B"
+        ];
+
+        // Generate the Grid Buttons
+        const gridContainer = document.querySelector('#grid-layer .grid');
+        for (let i = 1; i <= 20; i++) {
+            const btn = document.createElement('button');
+            btn.className = 'glass-btn flex flex-col items-center justify-center aspect-square rounded-2xl w-full text-center relative group';
+            btn.onclick = () => showQuestion(i, answers[i-1]);
+            
+            btn.innerHTML = `
+                <span class="text-3xl md:text-4xl font-black text-slate-700/80 group-hover:text-slate-900 transition-colors drop-shadow-sm">${i}</span>
+                <div class="absolute bottom-2 text-[10px] uppercase font-bold text-slate-500 group-hover:text-blue-600 transition-colors">
+                    Lihat
+                </div>
+            `;
+            gridContainer.appendChild(btn);
+        }
+
+        // Navigation Functions
+        const gridLayer = document.getElementById('grid-layer');
+        const detailLayer = document.getElementById('detail-layer');
+
+        function showQuestion(num, answer) {
+            // Update Title and Answer pill
+            document.getElementById('detail-title').innerText = `Pembahasan Soal ${num}`;
+            document.getElementById('detail-answer').innerText = answer;
+
+            // Hide all detail contents
+            document.querySelectorAll('.q-content').forEach(el => el.classList.add('hidden'));
+            
+            // Show the specific question content
+            const contentToShow = document.getElementById(`q-${num}`);
+            if (contentToShow) {
+                contentToShow.classList.remove('hidden');
+            }
+
+            // Animate transition (Grid OUT, Detail IN)
+            gridLayer.classList.replace('opacity-100', 'opacity-0');
+            gridLayer.classList.replace('scale-100', 'scale-95');
+            gridLayer.classList.add('pointer-events-none');
+            
+            setTimeout(() => {
+                detailLayer.classList.replace('opacity-0', 'opacity-100');
+                detailLayer.classList.replace('scale-95', 'scale-100');
+                detailLayer.classList.remove('pointer-events-none');
+                detailLayer.classList.add('z-20');
+                gridLayer.classList.replace('z-10', 'z-0');
+                
+                // Force MathJax to re-evaluate the visible container just in case
+                if(window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([contentToShow]);
+                }
+            }, 300); // Wait for fade out
+        }
+
+        function showGrid() {
+            // Animate transition (Detail OUT, Grid IN)
+            detailLayer.classList.replace('opacity-100', 'opacity-0');
+            detailLayer.classList.replace('scale-100', 'scale-95');
+            detailLayer.classList.add('pointer-events-none');
+            
+            setTimeout(() => {
+                gridLayer.classList.replace('opacity-0', 'opacity-100');
+                gridLayer.classList.replace('scale-95', 'scale-100');
+                gridLayer.classList.remove('pointer-events-none');
+                gridLayer.classList.add('z-10');
+                detailLayer.classList.replace('z-20', 'z-0');
+            }, 300);
+        }
+    </script>
+</body>
+</html>
